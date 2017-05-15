@@ -1,6 +1,7 @@
-const webpack = require('webpack')
+// const webpack = require('webpack')
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
+const ParallelEsPlugin = require('parallel-es-webpack-plugin')
 
 const config = {
   context: path.resolve('./src'),
@@ -18,26 +19,22 @@ const config = {
     rules: [
       {
         test: /\.ts$/,
-        exclude: ['node_modules'],
-        loader: 'ts-loader',
+        // exclude: ['node_modules'],
+        use: {
+          loader: 'ts-loader',
+          options: {
+            plugins: ['parallel-es'],
+          },
+        },
       },
     ],
   },
-  resolve: {
-    extensions: ['.ts', '.js'],
-    modules: [path.resolve('./src'), 'node_modules'],
-  },
+  // resolve: {
+  //   extensions: ['.ts', '.js'],
+  //   modules: [path.resolve('./src'), 'node_modules'],
+  // },
   externals: [nodeExternals()],
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        tslint: {
-          emitErrors: true,
-          failOnHint: true,
-        },
-      },
-    }),
-  ],
+  plugins: [new ParallelEsPlugin()],
 }
 
 module.exports = config

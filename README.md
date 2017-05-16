@@ -1,4 +1,8 @@
 
+### References for setting this up
+http://stackoverflow.com/questions/29911491/using-webpack-on-server-side-of-nodejs
+https://github.com/MichaReiser/parallel-es-webpack-plugin
+https://github.com/jsecademy/webpack-express-typescript
 
 ## Built upon
 

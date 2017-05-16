@@ -4,6 +4,7 @@ const ParallelEsPlugin = require('parallel-es-webpack-plugin')
 module.exports = {
   entry: {
     vanilla: './src/vanilla.ts',
+    'parallel-range': './src/parallel-range.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

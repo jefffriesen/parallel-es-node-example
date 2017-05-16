@@ -79,9 +79,10 @@
     /******/function __webpack_require__(moduleId) {
         /******/
         /******/ // Check if module is in cache
-        /******/if (installedModules[moduleId])
+        /******/if (installedModules[moduleId]) {
             /******/return installedModules[moduleId].exports;
-        /******/
+            /******/
+        }
         /******/ // Create a new module (and put it into the cache)
         /******/var module = installedModules[moduleId] = {
             /******/i: moduleId,
@@ -107,18 +108,21 @@
     /******/ // expose the module cache
     /******/__webpack_require__.c = installedModules;
     /******/
-    /******/ // identity function for calling harmory imports with the correct context
+    /******/ // identity function for calling harmony imports with the correct context
     /******/__webpack_require__.i = function (value) {
         return value;
     };
     /******/
-    /******/ // define getter function for harmory exports
+    /******/ // define getter function for harmony exports
     /******/__webpack_require__.d = function (exports, name, getter) {
-        /******/Object.defineProperty(exports, name, {
-            /******/configurable: false,
-            /******/enumerable: true,
-            /******/get: getter
-            /******/ });
+        /******/if (!__webpack_require__.o(exports, name)) {
+            /******/Object.defineProperty(exports, name, {
+                /******/configurable: false,
+                /******/enumerable: true,
+                /******/get: getter
+                /******/ });
+            /******/
+        }
         /******/
     };
     /******/
@@ -145,18 +149,18 @@
     /******/__webpack_require__.p = "";
     /******/
     /******/ // Load entry module and return exports
-    /******/return __webpack_require__(__webpack_require__.s = 18);
+    /******/return __webpack_require__(__webpack_require__.s = 6);
     /******/
 })(
 /************************************************************************/
 /******/[
 /* 0 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony export (immutable) */
-    exports["b"] = toIterator;
-    /* harmony export (immutable) */exports["a"] = toArray;
+    __webpack_exports__["a"] = toIterator;
+    /* harmony export (immutable) */__webpack_exports__["b"] = toArray;
     /* unused harmony export flattenArray */
     /* unused harmony export concatInPlace */
     /**
@@ -218,11 +222,11 @@
     /***/
 },
 /* 1 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony export (immutable) */
-    exports["a"] = isSerializedFunctionCall;
+    __webpack_exports__["a"] = isSerializedFunctionCall;
     /**
      * @module parallel
      */
@@ -239,67 +243,31 @@
     /***/
 },
 /* 2 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
-    /* unused harmony export WorkerMessageType */
     /* unused harmony export initializeWorkerMessage */
     /* unused harmony export scheduleTaskMessage */
     /* harmony export (immutable) */
-    exports["c"] = requestFunctionMessage;
+    __webpack_exports__["d"] = requestFunctionMessage;
     /* unused harmony export functionResponseMessage */
-    /* harmony export (immutable) */exports["f"] = workerResultMessage;
-    /* harmony export (immutable) */exports["e"] = functionExecutionError;
+    /* harmony export (immutable) */__webpack_exports__["g"] = workerResultMessage;
+    /* harmony export (immutable) */__webpack_exports__["f"] = functionExecutionError;
     /* unused harmony export stopMessage */
-    /* harmony export (immutable) */exports["b"] = isScheduleTask;
-    /* harmony export (immutable) */exports["a"] = isInitializeMessage;
+    /* harmony export (immutable) */__webpack_exports__["c"] = isScheduleTask;
+    /* harmony export (immutable) */__webpack_exports__["b"] = isInitializeMessage;
     /* unused harmony export isFunctionRequest */
-    /* harmony export (immutable) */exports["d"] = isFunctionResponse;
+    /* harmony export (immutable) */__webpack_exports__["e"] = isFunctionResponse;
     /* unused harmony export isWorkerResult */
     /* unused harmony export isFunctionExecutionError */
-    /* harmony export (immutable) */exports["g"] = isStopMesssage;
-    /**
-     * Message types
-     */
-    var WorkerMessageType;
-    (function (WorkerMessageType) {
-        /**
-         * Sent from the worker facade to the worker slave to initialize the slave.
-         */
-        WorkerMessageType[WorkerMessageType["InitializeWorker"] = 0] = "InitializeWorker";
-        /**
-         * Sent from the worker facade to the worker slave to schedule a new task on the slave.
-         */
-        WorkerMessageType[WorkerMessageType["ScheduleTask"] = 1] = "ScheduleTask";
-        /**
-         * Send from the worker slave to the worker thread to request the definition of a function needed to execute a scheduled task
-         */
-        WorkerMessageType[WorkerMessageType["FunctionRequest"] = 2] = "FunctionRequest";
-        /**
-         * Send from the worker thread to the worker slave as response to a {@link WorkerMessageType.FunctionRequest}. Includes
-         * the definitions of all requested functions
-         */
-        WorkerMessageType[WorkerMessageType["FunctionResponse"] = 3] = "FunctionResponse";
-        /**
-         * Sent from the worker slave to the worker thread containing the computed result
-         */
-        WorkerMessageType[WorkerMessageType["WorkerResult"] = 4] = "WorkerResult";
-        /**
-         * Sent from the worker slave to the worker thread for the case an error occurred during the evaluation of the scheduled task.
-         */
-        WorkerMessageType[WorkerMessageType["FunctionExecutionError"] = 5] = "FunctionExecutionError";
-        /**
-         * Sent from the worker thread to the worker slave to request the slave to terminate.
-         */
-        WorkerMessageType[WorkerMessageType["Stop"] = 6] = "Stop";
-    })(WorkerMessageType || (WorkerMessageType = {}));
+    /* harmony export (immutable) */__webpack_exports__["a"] = isStopMesssage;
     /**
      * Creates an initialize worker message
      * @param id the unique id of the worker
      * @returns the initialize worker message
      */
     function initializeWorkerMessage(id) {
-        return { type: WorkerMessageType.InitializeWorker, workerId: id };
+        return { type: 0 /* InitializeWorker */, workerId: id };
     }
     /**
      * Creates a message to schedule the given task on a worker slave
@@ -307,7 +275,7 @@
      * @returns the schedule message
      */
     function scheduleTaskMessage(task) {
-        return { task, type: WorkerMessageType.ScheduleTask };
+        return { task, type: 1 /* ScheduleTask */ };
     }
     /**
      * Creates an {@link IFunctionRequest} message that requests the given function ids from the worker thread
@@ -316,7 +284,7 @@
      * @returns the function request message
      */
     function requestFunctionMessage(functionId, ...otherFunctionIds) {
-        return { functionIds: [functionId, ...otherFunctionIds], type: WorkerMessageType.FunctionRequest };
+        return { functionIds: [functionId, ...otherFunctionIds], type: 2 /* FunctionRequest */ };
     }
     /**
      * Creates a function response message containing the passed function definitions
@@ -324,7 +292,7 @@
      * @returns the function response message
      */
     function functionResponseMessage(functions, ...missingFunctionIds) {
-        return { functions, missingFunctions: missingFunctionIds, type: WorkerMessageType.FunctionResponse };
+        return { functions, missingFunctions: missingFunctionIds, type: 3 /* FunctionResponse */ };
     }
     /**
      * Creates a worker result message for the given result
@@ -332,7 +300,7 @@
      * @returns the message
      */
     function workerResultMessage(result) {
-        return { result, type: WorkerMessageType.WorkerResult };
+        return { result, type: 4 /* WorkerResult */ };
     }
     /**
      * Creates a function execution error message containing the given error
@@ -340,18 +308,18 @@
      * @returns the message
      */
     function functionExecutionError(error) {
-        let errorObject = {};
+        const errorObject = {};
         for (const prop of Object.getOwnPropertyNames(error)) {
             errorObject[prop] = JSON.stringify(error[prop]);
         }
-        return { error: errorObject, type: WorkerMessageType.FunctionExecutionError };
+        return { error: errorObject, type: 5 /* FunctionExecutionError */ };
     }
     /**
      * Creates a stop message
      * @returns the message
      */
     function stopMessage() {
-        return { type: WorkerMessageType.Stop };
+        return { type: 6 /* Stop */ };
     }
     /**
      * Tests if the given message is an {@link IScheduleTaskMessage} message
@@ -359,7 +327,7 @@
      * @returns {boolean} {@code true} if the message is an {@link IScheduleTaskMessage}
      */
     function isScheduleTask(message) {
-        return message.type === WorkerMessageType.ScheduleTask;
+        return message.type === 1 /* ScheduleTask */;
     }
     /**
      * Tests if the given message is an {@link IInitializeWorkerMessage} message
@@ -367,7 +335,7 @@
      * @returns {boolean} {@code true} if the message is an {@link IInitializeWorkerMessage}
      */
     function isInitializeMessage(message) {
-        return message.type === WorkerMessageType.InitializeWorker;
+        return message.type === 0 /* InitializeWorker */;
     }
     /**
      * Tests if the given message is an {@link IFunctionRequest} message
@@ -375,7 +343,7 @@
      * @returns {boolean} {@code true} if the message is an {@link IFunctionRequest}
      */
     function isFunctionRequest(message) {
-        return message.type === WorkerMessageType.FunctionRequest;
+        return message.type === 2 /* FunctionRequest */;
     }
     /**
      * Tests if the given message is an {@link IFunctionResponse} message
@@ -383,7 +351,7 @@
      * @returns {boolean} {@code true} if the message is an {@link IFunctionResponse}
      */
     function isFunctionResponse(message) {
-        return message.type === WorkerMessageType.FunctionResponse;
+        return message.type === 3 /* FunctionResponse */;
     }
     /**
      * Tests if the given message is an {@link IWorkerResultMessage} message
@@ -391,7 +359,7 @@
      * @returns {boolean} {@code true} if the message is an {@link IWorkerResultMessage}
      */
     function isWorkerResult(message) {
-        return message.type === WorkerMessageType.WorkerResult;
+        return message.type === 4 /* WorkerResult */;
     }
     /**
      * Tests if the given message is an {@link IFunctionExecutionError} message
@@ -399,7 +367,7 @@
      * @returns {boolean} {@code true} if the message is an {@link IFunctionExecutionError}
      */
     function isFunctionExecutionError(message) {
-        return message.type === WorkerMessageType.FunctionExecutionError;
+        return message.type === 5 /* FunctionExecutionError */;
     }
     /**
      * Tests if the given message is a stop message
@@ -407,68 +375,44 @@
      * @returns {boolean} {@code true} if the message is a stop message
      */
     function isStopMesssage(message) {
-        return message.type === WorkerMessageType.Stop;
+        return message.type === 6 /* Stop */;
     }
 
     /***/
 },
 /* 3 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony import */
-    var __WEBPACK_IMPORTED_MODULE_0__common_worker_worker_messages__ = __webpack_require__(2);
-    /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__browser_worker_slave_states__ = __webpack_require__(6);
+    var __WEBPACK_IMPORTED_MODULE_0__common_worker_abstract_worker_slave__ = __webpack_require__(17);
 
     /**
      * Worker thread endpoint executed in the web worker thread.
      * Executes the tasks assigned by the thread pool via the {@link BrowserWorkerThread}.
      */
-    class BrowserWorkerSlave {
+    class BrowserWorkerSlave extends __WEBPACK_IMPORTED_MODULE_0__common_worker_abstract_worker_slave__["a" /* AbstractWorkerSlave */] {
         constructor(functionCache) {
+            super(functionCache);
             this.functionCache = functionCache;
-            /**
-             * The unique id of the slave instance
-             */
-            this.id = Number.NaN;
-            this.state = new __WEBPACK_IMPORTED_MODULE_1__browser_worker_slave_states__["a" /* DefaultBrowserWorkerSlaveState */](this);
-        }
-        /**
-         * Changes the state of the slave to the new state
-         * @param state the new state to assign
-         */
-        changeState(state) {
-            this.state = state;
-            this.state.enter();
-        }
-        /**
-         * Executed when the slave receives a message from the ui-thread
-         * @param event the received message
-         */
-        onMessage(event) {
-            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__common_worker_worker_messages__["g" /* isStopMesssage */])(event.data)) {
-                close();
-            } else if (!this.state.onMessage(event)) {
-                throw new Error(`Message with type ${event.data.type} cannot be handled by slave ${this}`);
-            }
         }
         postMessage(message) {
             postMessage(message);
         }
-        toString() {
-            return `BrowserSlave { id: ${this.id}, state: '${this.state.name}' }`;
+        terminate() {
+            close();
         }
     }
-    /* harmony export (immutable) */exports["a"] = BrowserWorkerSlave;
+    /* harmony export (immutable) */__webpack_exports__["a"] = BrowserWorkerSlave;
 
     /***/
 },
 /* 4 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony import */
-    var __WEBPACK_IMPORTED_MODULE_0__util_simple_map__ = __webpack_require__(17);
+    var __WEBPACK_IMPORTED_MODULE_0__util_simple_map__ = __webpack_require__(16);
 
     /**
      * Cache used by each worker slave to cache the received functions.
@@ -520,24 +464,24 @@
             return Function.apply(undefined, [...definition.argumentNames, definition.body]);
         }
     }
-    /* harmony export (immutable) */exports["a"] = SlaveFunctionLookupTable;
+    /* harmony export (immutable) */__webpack_exports__["a"] = SlaveFunctionLookupTable;
 
     /***/
 },
 /* 5 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
-    /* harmony import */
-    var __WEBPACK_IMPORTED_MODULE_0__parallel_worker_functions__ = __webpack_require__(12);
-    /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__util_identity__ = __webpack_require__(16);
+    /* harmony export (immutable) */
+    __webpack_exports__["a"] = registerStaticParallelFunctions;
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__parallel_worker_functions__ = __webpack_require__(12);
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__util_identity__ = __webpack_require__(15);
     /* harmony import */var __WEBPACK_IMPORTED_MODULE_2__filter_iterator__ = __webpack_require__(9);
     /* harmony import */var __WEBPACK_IMPORTED_MODULE_3__map_iterator__ = __webpack_require__(10);
     /* harmony import */var __WEBPACK_IMPORTED_MODULE_4__parallel_job_executor__ = __webpack_require__(11);
     /* harmony import */var __WEBPACK_IMPORTED_MODULE_5__range_iterator__ = __webpack_require__(13);
     /* harmony import */var __WEBPACK_IMPORTED_MODULE_6__reduce_iterator__ = __webpack_require__(14);
     /* harmony import */var __WEBPACK_IMPORTED_MODULE_7__util_arrays__ = __webpack_require__(0);
-    /* harmony export (immutable) */exports["a"] = registerStaticParallelFunctions;
 
     /**
      * Registers the static parallel functions
@@ -550,141 +494,33 @@
         lookupTable.registerStaticFunction(__WEBPACK_IMPORTED_MODULE_0__parallel_worker_functions__["a" /* ParallelWorkerFunctionIds */].PARALLEL_JOB_EXECUTOR, __WEBPACK_IMPORTED_MODULE_4__parallel_job_executor__["a" /* parallelJobExecutor */]);
         lookupTable.registerStaticFunction(__WEBPACK_IMPORTED_MODULE_0__parallel_worker_functions__["a" /* ParallelWorkerFunctionIds */].RANGE, __WEBPACK_IMPORTED_MODULE_5__range_iterator__["a" /* rangeIterator */]);
         lookupTable.registerStaticFunction(__WEBPACK_IMPORTED_MODULE_0__parallel_worker_functions__["a" /* ParallelWorkerFunctionIds */].REDUCE, __WEBPACK_IMPORTED_MODULE_6__reduce_iterator__["a" /* reduceIterator */]);
-        lookupTable.registerStaticFunction(__WEBPACK_IMPORTED_MODULE_0__parallel_worker_functions__["a" /* ParallelWorkerFunctionIds */].TO_ITERATOR, __WEBPACK_IMPORTED_MODULE_7__util_arrays__["b" /* toIterator */]);
+        lookupTable.registerStaticFunction(__WEBPACK_IMPORTED_MODULE_0__parallel_worker_functions__["a" /* ParallelWorkerFunctionIds */].TO_ITERATOR, __WEBPACK_IMPORTED_MODULE_7__util_arrays__["a" /* toIterator */]);
     }
 
     /***/
 },
 /* 6 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
-    /* harmony import */
-    var __WEBPACK_IMPORTED_MODULE_0__common_function_function_call_deserializer__ = __webpack_require__(7);
-    /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__common_worker_worker_messages__ = __webpack_require__(2);
 
-    /**
-     * State of the browser worker slave.
-     */
-    class BrowserWorkerSlaveState {
-        constructor(name, slave) {
-            this.name = name;
-            this.slave = slave;
-        }
-        /**
-         * Executed when the slave changes its state to this state.
-         */
-        enter() {}
-        // intentionally empty
+    Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__browser_worker_slave__ = __webpack_require__(3);
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__common_function_slave_function_lookup_table__ = __webpack_require__(4);
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_2__common_parallel_slave_register_parallel_worker_functions__ = __webpack_require__(5);
 
-        /**
-         * Executed whenever the slave receives a message from the ui-thread while being in this state
-         * @param event the received message
-         * @returns {boolean} true if the state has handled the message, false otherwise
-         */
-        onMessage(event) {
-            return false;
-        }
-    }
-    /* unused harmony export BrowserWorkerSlaveState */
+    const slaveFunctionLookupTable = new __WEBPACK_IMPORTED_MODULE_1__common_function_slave_function_lookup_table__["a" /* SlaveFunctionLookupTable */]();
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common_parallel_slave_register_parallel_worker_functions__["a" /* registerStaticParallelFunctions */])(slaveFunctionLookupTable);
 
-    /**
-     * Initial state of a slave. The slave is waiting for the initialization message.
-     */
-    class DefaultBrowserWorkerSlaveState extends BrowserWorkerSlaveState {
-        constructor(slave) {
-            super("Default", slave);
-        }
-        onMessage(event) {
-            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common_worker_worker_messages__["a" /* isInitializeMessage */])(event.data)) {
-                this.slave.id = event.data.workerId;
-                this.slave.changeState(new IdleBrowserWorkerSlaveState(this.slave));
-                return true;
-            }
-            return false;
-        }
-    }
-    /* harmony export (immutable) */exports["a"] = DefaultBrowserWorkerSlaveState;
-
-    /**
-     * The slave is waiting for work from the ui-thread.
-     */
-    class IdleBrowserWorkerSlaveState extends BrowserWorkerSlaveState {
-        constructor(slave) {
-            super("Idle", slave);
-        }
-        onMessage(event) {
-            if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common_worker_worker_messages__["b" /* isScheduleTask */])(event.data)) {
-                return false;
-            }
-            const task = event.data.task;
-            const missingFunctions = task.usedFunctionIds.filter(id => !this.slave.functionCache.has(id));
-            if (missingFunctions.length === 0) {
-                this.slave.changeState(new ExecuteFunctionBrowserWorkerSlaveState(this.slave, task));
-            } else {
-                const [head, ...tail] = missingFunctions;
-                this.slave.postMessage(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common_worker_worker_messages__["c" /* requestFunctionMessage */])(head, ...tail));
-                this.slave.changeState(new WaitingForFunctionDefinitionBrowserWorkerSlaveState(this.slave, task));
-            }
-            return true;
-        }
-    }
-    /* unused harmony export IdleBrowserWorkerSlaveState */
-
-    /**
-     * The slave is waiting for the definition of the requested function that is needed to execute the assigned task.
-     */
-    class WaitingForFunctionDefinitionBrowserWorkerSlaveState extends BrowserWorkerSlaveState {
-        constructor(slave, task) {
-            super("WaitingForFunctionDefinition", slave);
-            this.task = task;
-        }
-        onMessage(event) {
-            const message = event.data;
-            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common_worker_worker_messages__["d" /* isFunctionResponse */])(message)) {
-                if (message.missingFunctions.length > 0) {
-                    const identifiers = message.missingFunctions.map(functionId => functionId.identifier).join(", ");
-                    this.slave.postMessage(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common_worker_worker_messages__["e" /* functionExecutionError */])(new Error(`The function ids [${identifiers}] could not be resolved by slave ${this.slave.id}.`)));
-                    this.slave.changeState(new IdleBrowserWorkerSlaveState(this.slave));
-                } else {
-                    for (const definition of message.functions) {
-                        this.slave.functionCache.registerFunction(definition);
-                    }
-                    this.slave.changeState(new ExecuteFunctionBrowserWorkerSlaveState(this.slave, this.task));
-                }
-                return true;
-            }
-            return false;
-        }
-    }
-    /* unused harmony export WaitingForFunctionDefinitionBrowserWorkerSlaveState */
-
-    /**
-     * The slave is executing the function
-     */
-    class ExecuteFunctionBrowserWorkerSlaveState extends BrowserWorkerSlaveState {
-        constructor(slave, task) {
-            super("Executing", slave);
-            this.task = task;
-        }
-        enter() {
-            const functionDeserializer = new __WEBPACK_IMPORTED_MODULE_0__common_function_function_call_deserializer__["a" /* FunctionCallDeserializer */](this.slave.functionCache);
-            try {
-                const main = functionDeserializer.deserializeFunctionCall(this.task.main);
-                const result = main({ functionCallDeserializer: functionDeserializer });
-                this.slave.postMessage(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common_worker_worker_messages__["f" /* workerResultMessage */])(result));
-            } catch (error) {
-                this.slave.postMessage(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__common_worker_worker_messages__["e" /* functionExecutionError */])(error));
-            }
-            this.slave.changeState(new IdleBrowserWorkerSlaveState(this.slave));
-        }
-    }
-    /* unused harmony export ExecuteFunctionBrowserWorkerSlaveState */
+    const slave = new __WEBPACK_IMPORTED_MODULE_0__browser_worker_slave__["a" /* BrowserWorkerSlave */](slaveFunctionLookupTable);
+    onmessage = function (event) {
+        slave.onMessage(event.data);
+    };
 
     /***/
 },
 /* 7 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony import */
@@ -739,16 +575,16 @@
             return bind(func, params);
         }
     }
-    /* harmony export (immutable) */exports["a"] = FunctionCallDeserializer;
+    /* harmony export (immutable) */__webpack_exports__["a"] = FunctionCallDeserializer;
 
     /***/
 },
 /* 8 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony export (immutable) */
-    exports["a"] = functionId;
+    __webpack_exports__["a"] = functionId;
     /* unused harmony export isFunctionId */
     /**
      * @module parallel
@@ -778,11 +614,11 @@
     /***/
 },
 /* 9 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony export (immutable) */
-    exports["a"] = filterIterator;
+    __webpack_exports__["a"] = filterIterator;
     /**
      * Returns a new iterator that only contains all elements for which the given predicate returns true
      * @param iterator the iterator to filter
@@ -809,11 +645,11 @@
     /***/
 },
 /* 10 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony export (immutable) */
-    exports["a"] = mapIterator;
+    __webpack_exports__["a"] = mapIterator;
     /**
      * Performs the map operation
      * @param iterator the iterator of the previous step
@@ -841,14 +677,13 @@
     /***/
 },
 /* 11 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
-    /* harmony import */
-    var __WEBPACK_IMPORTED_MODULE_0__util_arrays__ = __webpack_require__(0);
+    /* harmony export (immutable) */
+    __webpack_exports__["a"] = parallelJobExecutor;
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__util_arrays__ = __webpack_require__(0);
     /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__function_serialized_function_call__ = __webpack_require__(1);
-    /* harmony import */var __WEBPACK_IMPORTED_MODULE_2__util_assign__ = __webpack_require__(15);
-    /* harmony export (immutable) */exports["a"] = parallelJobExecutor;
 
     function createTaskEnvironment(definition, functionCallDeserializer) {
         let taskEnvironment = { taskIndex: definition.taskIndex, valuesPerTask: definition.valuesPerTask };
@@ -859,7 +694,7 @@
             } else {
                 currentEnvironment = environment;
             }
-            taskEnvironment = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__util_assign__["a" /* assign */])(taskEnvironment, currentEnvironment);
+            taskEnvironment = Object.assign(taskEnvironment, currentEnvironment);
         }
         return taskEnvironment;
     }
@@ -880,13 +715,13 @@
             const iteratee = functionCallDeserializer.deserializeFunctionCall(operation.iteratee);
             iterator = iteratorFunction(iterator, iteratee, environment);
         }
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util_arrays__["a" /* toArray */])(iterator);
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util_arrays__["b" /* toArray */])(iterator);
     }
 
     /***/
 },
 /* 12 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony import */
@@ -902,16 +737,16 @@
         TIMES: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__function_function_id__["a" /* functionId */])("parallel", 6),
         TO_ITERATOR: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__function_function_id__["a" /* functionId */])("parallel", 7)
     };
-    /* harmony export (immutable) */exports["a"] = ParallelWorkerFunctionIds;
+    /* harmony export (immutable) */__webpack_exports__["a"] = ParallelWorkerFunctionIds;
 
     /***/
 },
 /* 13 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony export (immutable) */
-    exports["a"] = rangeIterator;
+    __webpack_exports__["a"] = rangeIterator;
     /**
      * Generator function that creates an iterator containing all elements in the range [start, end) with a step size of step.
      * @param start start value of the range (inclusive)
@@ -931,7 +766,7 @@
         let next = start;
         return {
             next() {
-                let current = next;
+                const current = next;
                 next = next + step;
                 if (length-- !== 0) {
                     return { done: false, value: current };
@@ -944,12 +779,12 @@
     /***/
 },
 /* 14 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
-    /* harmony import */
-    var __WEBPACK_IMPORTED_MODULE_0__util_arrays__ = __webpack_require__(0);
-    /* harmony export (immutable) */exports["a"] = reduceIterator;
+    /* harmony export (immutable) */
+    __webpack_exports__["a"] = reduceIterator;
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_0__util_arrays__ = __webpack_require__(0);
 
     /**
      * Reduces the elements of the given iterator to a single value by applying the given iteratee to each element
@@ -969,48 +804,17 @@
         while (!(current = iterator.next()).done) {
             accumulatedValue = iteratee(accumulatedValue, current.value, env);
         }
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util_arrays__["b" /* toIterator */])([accumulatedValue]);
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util_arrays__["a" /* toIterator */])([accumulatedValue]);
     }
 
     /***/
 },
 /* 15 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony export (immutable) */
-    exports["a"] = assign;
-    /**
-     * Polyfill for Object.assign
-     * @param target target object
-     * @param sources source object to copy into targetk
-     */
-    function assign(target, ...sources) {
-        if (target == null) {
-            throw new TypeError("Cannot convert undefined or null to object");
-        }
-        target = Object(target);
-        for (let index = 1; index < arguments.length; index++) {
-            const source = arguments[index];
-            if (source != null) {
-                for (const key in source) {
-                    if (Object.prototype.hasOwnProperty.call(source, key)) {
-                        target[key] = source[key];
-                    }
-                }
-            }
-        }
-        return target;
-    }
-
-    /***/
-},
-/* 16 */
-/***/function (module, exports, __webpack_require__) {
-
-    "use strict";
-    /* harmony export (immutable) */
-    exports["a"] = identity;
+    __webpack_exports__["a"] = identity;
     /**
      * identity function. Returns the passed in value
      * @param element the value to return
@@ -1026,8 +830,8 @@
 
     /***/
 },
-/* 17 */
-/***/function (module, exports, __webpack_require__) {
+/* 16 */
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /**
@@ -1080,30 +884,185 @@
             return `@${key}`;
         }
     }
-    /* harmony export (immutable) */exports["a"] = SimpleMap;
+    /* harmony export (immutable) */__webpack_exports__["a"] = SimpleMap;
+
+    /***/
+},
+/* 17 */
+/***/function (module, __webpack_exports__, __webpack_require__) {
+
+    "use strict";
+    /* harmony import */
+    var __WEBPACK_IMPORTED_MODULE_0__worker_messages__ = __webpack_require__(2);
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__worker_slave_states__ = __webpack_require__(18);
+
+    /**
+     * Abstract Worker thread endpoint.
+     * Executes the tasks assigned by the thread pool via the {@link DefaultWorkerThread}.
+     */
+    class AbstractWorkerSlave {
+        constructor(functionCache) {
+            this.functionCache = functionCache;
+            /**
+             * The unique id of the slave instance
+             */
+            this.id = Number.NaN;
+            this.state = new __WEBPACK_IMPORTED_MODULE_1__worker_slave_states__["a" /* DefaultWorkerSlaveState */](this);
+        }
+        /**
+         * Changes the state of the slave to the new state
+         * @param state the new state to assign
+         */
+        changeState(state) {
+            this.state = state;
+            this.state.enter();
+        }
+        /**
+         * Executed when the slave receives a message from the ui-thread
+         * @param message the received message
+         */
+        onMessage(message) {
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__worker_messages__["a" /* isStopMesssage */])(message)) {
+                this.terminate();
+            } else if (!this.state.onMessage(message)) {
+                throw new Error(`Message with type ${message.type} cannot be handled by ${this}`);
+            }
+        }
+        toString() {
+            return `Slave { id: ${this.id}, state: '${this.state.name}' }`;
+        }
+    }
+    /* harmony export (immutable) */__webpack_exports__["a"] = AbstractWorkerSlave;
 
     /***/
 },
 /* 18 */
-/***/function (module, exports, __webpack_require__) {
+/***/function (module, __webpack_exports__, __webpack_require__) {
 
     "use strict";
     /* harmony import */
-    var __WEBPACK_IMPORTED_MODULE_0__browser_worker_slave__ = __webpack_require__(3);
-    /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__common_function_slave_function_lookup_table__ = __webpack_require__(4);
-    /* harmony import */var __WEBPACK_IMPORTED_MODULE_2__common_parallel_slave_register_parallel_worker_functions__ = __webpack_require__(5);
+    var __WEBPACK_IMPORTED_MODULE_0__function_function_call_deserializer__ = __webpack_require__(7);
+    /* harmony import */var __WEBPACK_IMPORTED_MODULE_1__worker_messages__ = __webpack_require__(2);
 
-    const slaveFunctionLookupTable = new __WEBPACK_IMPORTED_MODULE_1__common_function_slave_function_lookup_table__["a" /* SlaveFunctionLookupTable */]();
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__common_parallel_slave_register_parallel_worker_functions__["a" /* registerStaticParallelFunctions */])(slaveFunctionLookupTable);
+    /**
+     * State of the worker slave.
+     */
+    class WorkerSlaveState {
+        constructor(name, slave) {
+            this.name = name;
+            this.slave = slave;
+        }
+        /**
+         * Executed when the slave changes its state to this state.
+         */
+        enter() {}
+        // intentionally empty
 
-    const slave = new __WEBPACK_IMPORTED_MODULE_0__browser_worker_slave__["a" /* BrowserWorkerSlave */](slaveFunctionLookupTable);
-    onmessage = function () {
-        slave.onMessage.apply(slave, arguments);
-    };
+        /**
+         * Executed whenever the slave receives a message from the ui-thread while being in this state
+         * @param message the received message
+         * @returns {boolean} true if the state has handled the message, false otherwise
+         */
+        onMessage(message) {
+            return false;
+        }
+    }
+    /* unused harmony export WorkerSlaveState */
+
+    /**
+     * Initial state of a slave. The slave is waiting for the initialization message.
+     */
+    class DefaultWorkerSlaveState extends WorkerSlaveState {
+        constructor(slave) {
+            super("Default", slave);
+        }
+        onMessage(message) {
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__worker_messages__["b" /* isInitializeMessage */])(message)) {
+                this.slave.id = message.workerId;
+                this.slave.changeState(new IdleWorkerSlaveState(this.slave));
+                return true;
+            }
+            return false;
+        }
+    }
+    /* harmony export (immutable) */__webpack_exports__["a"] = DefaultWorkerSlaveState;
+
+    /**
+     * The slave is waiting for work from the ui-thread.
+     */
+    class IdleWorkerSlaveState extends WorkerSlaveState {
+        constructor(slave) {
+            super("Idle", slave);
+        }
+        onMessage(message) {
+            if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__worker_messages__["c" /* isScheduleTask */])(message)) {
+                return false;
+            }
+            const task = message.task;
+            const missingFunctions = task.usedFunctionIds.filter(id => !this.slave.functionCache.has(id));
+            if (missingFunctions.length === 0) {
+                this.slave.changeState(new ExecuteFunctionWorkerSlaveState(this.slave, task));
+            } else {
+                const [head, ...tail] = missingFunctions;
+                this.slave.postMessage(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__worker_messages__["d" /* requestFunctionMessage */])(head, ...tail));
+                this.slave.changeState(new WaitingForFunctionDefinitionWorkerSlaveState(this.slave, task));
+            }
+            return true;
+        }
+    }
+    /* unused harmony export IdleWorkerSlaveState */
+
+    /**
+     * The slave is waiting for the definition of the requested function that is needed to execute the assigned task.
+     */
+    class WaitingForFunctionDefinitionWorkerSlaveState extends WorkerSlaveState {
+        constructor(slave, task) {
+            super("WaitingForFunctionDefinition", slave);
+            this.task = task;
+        }
+        onMessage(message) {
+            if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__worker_messages__["e" /* isFunctionResponse */])(message)) {
+                if (message.missingFunctions.length > 0) {
+                    const identifiers = message.missingFunctions.map(functionId => functionId.identifier).join(", ");
+                    this.slave.postMessage(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__worker_messages__["f" /* functionExecutionError */])(new Error(`The function ids [${identifiers}] could not be resolved by slave ${this.slave.id}.`)));
+                    this.slave.changeState(new IdleWorkerSlaveState(this.slave));
+                } else {
+                    for (const definition of message.functions) {
+                        this.slave.functionCache.registerFunction(definition);
+                    }
+                    this.slave.changeState(new ExecuteFunctionWorkerSlaveState(this.slave, this.task));
+                }
+                return true;
+            }
+            return false;
+        }
+    }
+    /* unused harmony export WaitingForFunctionDefinitionWorkerSlaveState */
+
+    /**
+     * The slave is executing the function
+     */
+    class ExecuteFunctionWorkerSlaveState extends WorkerSlaveState {
+        constructor(slave, task) {
+            super("Executing", slave);
+            this.task = task;
+        }
+        enter() {
+            const functionDeserializer = new __WEBPACK_IMPORTED_MODULE_0__function_function_call_deserializer__["a" /* FunctionCallDeserializer */](this.slave.functionCache);
+            try {
+                const main = functionDeserializer.deserializeFunctionCall(this.task.main);
+                const result = main({ functionCallDeserializer: functionDeserializer });
+                this.slave.postMessage(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__worker_messages__["g" /* workerResultMessage */])(result));
+            } catch (error) {
+                this.slave.postMessage(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__worker_messages__["f" /* functionExecutionError */])(error));
+            }
+            this.slave.changeState(new IdleWorkerSlaveState(this.slave));
+        }
+    }
+    /* unused harmony export ExecuteFunctionWorkerSlaveState */
 
     /***/
-}
-/******/]);
+}]);
 //# sourceMappingURL=worker-slave.parallel-es6.js.map
 
 /***/ })

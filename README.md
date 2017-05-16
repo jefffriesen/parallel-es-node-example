@@ -25,3 +25,4 @@ yarn compile
 http://stackoverflow.com/questions/29911491/using-webpack-on-server-side-of-nodejs
 https://github.com/MichaReiser/parallel-es-webpack-plugin
 https://github.com/jsecademy/webpack-express-typescript
+https://runkit.com/57f2b36e9f61f314003b780d/591ab9e31b3859001293cadc

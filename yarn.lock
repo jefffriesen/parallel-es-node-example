@@ -1938,9 +1938,9 @@ parallel-es-webpack-plugin@^0.1.2:
     babel-loader "^6.2.8"
     source-map "^0.5.6"
 
-parallel-es@^0.1.17:
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/parallel-es/-/parallel-es-0.1.17.tgz#431e1014ce27a359e374adf08b6ae0fe4669135a"
+parallel-es@^0.1.18:
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/parallel-es/-/parallel-es-0.1.18.tgz#ea3acb4af2dafe704d9e6e795bfbc053d9023861"
 
 parse-asn1@^5.0.0:
   version "5.1.0"

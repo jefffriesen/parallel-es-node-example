@@ -106,6 +106,7 @@ function formatAddresses(address) {
     var num = address.num, street = address.street, city = address.city;
     return num + " " + street + " " + city;
 }
+// parallel.from(addresses, { maxValuesPerTask: 2 });
 __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.from(addresses)
     .map(formatAddresses)
     .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })

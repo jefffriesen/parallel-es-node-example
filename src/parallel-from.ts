@@ -19,6 +19,7 @@ function formatAddresses(address: IAddress): string {
   return `${num} ${street} ${city}`
 }
 
+// parallel.from(addresses, { maxValuesPerTask: 2 });
 parallel.from(addresses)
   .map(formatAddresses)
   .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))

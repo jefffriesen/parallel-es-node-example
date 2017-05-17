@@ -108,16 +108,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_cube__ = __webpack_require__(3);
 
 
+// Simple lamda function assigned to map. Note that this needs to be
+// compiled to es5 non-arrow functions. See this comment as to why:
+// https://github.com/MichaReiser/parallel.es/issues/105#issuecomment-301850333
+function range1Fn() {
+    __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
+        .map(function (value) { return value * value; })
+        .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
+        .then(function (result) { return console.log(result); });
+}
+range1Fn();
+// [ 0, 1, 4, 9, 16, 25, 36, 49, 64, 81 ]
 // Showing an imported function passed to map function
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
-    .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log(result); });
-// Also works:
-// parallel.range(0, 10)
-//   .map(value => value * value)
-//   .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
-//   .then(result => console.log(result))
+function range2Fn() {
+    __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
+        .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
+        .subscribe(function (subresult, taskIndex) { return console.log("Example 1 task resut: " + taskIndex + " is", subresult); })
+        .then(function (result) { return console.log(result); });
+}
+// range2Fn()
+// [ 0, 1, 8, 27, 64, 125, 216, 343, 512, 729 ]
+// See additiona chaining options: filter, reduce and catch.
+function range3Fn() {
+    __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
+        .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
+        .filter(function (value) { return value % 2 === 0; })
+        .reduce(0, function (acc, val) { return acc + val; })
+        .subscribe(function (subresult, taskIndex) { return console.log("Example 2 task result: " + taskIndex + " is", subresult); })
+        .then(function (result) { return console.log(result); })
+        .catch(function (err) { throw new Error("We have problems: " + err); });
+}
+// range3Fn() // result: 800
 // Output:
 // The result of the task 7 is [ 343 ]
 // The result of the task 8 is [ 512 ]

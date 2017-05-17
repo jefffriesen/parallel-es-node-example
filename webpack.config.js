@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     'parallel-range': './src/parallel-range.ts',
     'parallel-from': './src/parallel-from.ts',
+    'parallel-times': './src/parallel-times.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

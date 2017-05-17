@@ -6,8 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
-    vanilla: './src/vanilla.ts',
     'parallel-range': './src/parallel-range.ts',
+    'parallel-from': './src/parallel-from.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

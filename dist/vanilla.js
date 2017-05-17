@@ -63,36 +63,15 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 0:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 6:
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = cube;
-function cube(value) {
-    return value * value * value;
-}
-
-
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_cube__ = __webpack_require__(0);
-
-function vanillaMath(value) {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils_cube__["a" /* cube */])(value);
-}
-var abc = vanillaMath(2);
-console.log('vanillaMath: ', abc);
-
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/jeffers/git/jefffriesen/parallel-es-node-example/src/vanilla.ts'");
 
 /***/ })
 

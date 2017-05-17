@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,52 +86,39 @@ module.exports = require("os");
 //# sourceMappingURL=node.parallel.js.map
 
 /***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = cube;
-function cube(value) {
-    return value * value * value;
-}
-
-
-/***/ }),
-/* 4 */,
-/* 5 */
+/* 3 */,
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_parallel_es__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_cube__ = __webpack_require__(3);
 
-
-// Showing an imported function passed to map function
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
+// Example showing `from` which allows you to pass any array to the function to be
+// processed  in parallel.
+var addresses = [
+    { num: '123', street: 'Main St.', city: 'Boulder' },
+    { num: '555', street: 'Elm St.', city: 'Boulder' },
+    { num: '100', street: '10th Ave.', city: 'Boulder' },
+];
+function formatAddresses(address) {
+    var num = address.num, street = address.street, city = address.city;
+    return num + " " + street + " " + city;
+}
+__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.from(addresses)
+    .map(formatAddresses)
     .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
     .then(function (result) { return console.log(result); });
-// Also works:
-// parallel.range(0, 10)
-//   .map(value => value * value)
-//   .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
-//   .then(result => console.log(result))
 // Output:
-// The result of the task 7 is [ 343 ]
-// The result of the task 8 is [ 512 ]
-// The result of the task 9 is [ 729 ]
-// The result of the task 4 is [ 64 ]
-// The result of the task 2 is [ 8 ]
-// The result of the task 3 is [ 27 ]
-// The result of the task 0 is [ 0 ]
-// The result of the task 6 is [ 216 ]
-// The result of the task 1 is [ 1 ]
-// The result of the task 5 is [ 125 ]
-// [ 0, 1, 8, 27, 64, 125, 216, 343, 512, 729 ]
+// The result of the task 2 is [ '100 10th Ave. Boulder' ]
+// The result of the task 0 is [ '123 Main St. Boulder' ]
+// The result of the task 1 is [ '555 Elm St. Boulder' ]
+// [ '123 Main St. Boulder',
+//   '555 Elm St. Boulder',
+//   '100 10th Ave. Boulder' ]
 
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=parallel-range.js.map
+//# sourceMappingURL=parallel-from.js.map

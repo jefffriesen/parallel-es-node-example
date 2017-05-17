@@ -93,24 +93,11 @@ module.exports = require("os");
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_parallel_es__);
-// import * as parallel from "parallel-es"
-// import parallel from "parallel-es/default"
 
-console.log('parallel: ', __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a);
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 100000)
+__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
     .map(function (value) { return value * value; })
     .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
     .then(function (result) { return console.log(result); });
-// parallel.from([1, 2, 3])
-//   .map(function (value) {
-//     return value * 2
-//   })
-//   .then(result => console.log(result))
-// Also doesn't work
-// parallel.run(() => {
-// 	return [1, 2, 3]
-// })
-// .then(result => console.log(result)) 
 
 
 /***/ })

@@ -1,5 +1,8 @@
 const path = require('path')
-const ParallelEsPlugin = require('parallel-es-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+// ParallelEsPlugin doesn't work in a node environment yet
+// const ParallelEsPlugin = require('parallel-es-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -17,11 +20,18 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'ts-loader',
-        query: {
-          plugins: ['parallel-es'],
-        },
+        // query: {
+        //   plugins: ['parallel-es'],
+        // },
       },
     ],
   },
-  plugins: [new ParallelEsPlugin()],
+  plugins: [
+    // node-slave.parallel.js needs to be copied into the dist folder
+    // See https://github.com/MichaReiser/parallel.es/issues/103#issuecomment-301775103
+    new CopyWebpackPlugin([
+      {from: './node_modules/parallel-es/dist/node-slave.parallel.js*'},
+    ]),
+    // new ParallelEsPlugin(),
+  ],
 }

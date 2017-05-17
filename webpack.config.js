@@ -26,11 +26,15 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: ['.webpack.js', '.ts', '.js'],
+  },
   plugins: [
     // node-slave.parallel.js needs to be copied into the dist folder
     // See https://github.com/MichaReiser/parallel.es/issues/103#issuecomment-301775103
     new CopyWebpackPlugin([
-      {from: './node_modules/parallel-es/dist/node-slave.parallel.js*'},
+      {from: './node_modules/parallel-es/dist/node-slave.parallel.js'},
+      {from: './node_modules/parallel-es/dist/node-slave.parallel.js.map'},
     ]),
     // new ParallelEsPlugin(),
   ],

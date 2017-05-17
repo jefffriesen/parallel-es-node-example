@@ -1,5 +1,9 @@
+import {cube} from './utils/cube'
 
-function add(a: number, b: number): number {
-  return a + 500
+
+function vanillaMath(value: number): number {
+  return cube(value)
 }
-console.log('add: ', add(1, 2))
+
+const abc = vanillaMath(2)
+console.log('vanillaMath: ', abc)

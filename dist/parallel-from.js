@@ -106,18 +106,22 @@ function formatAddresses(address) {
     var num = address.num, street = address.street, city = address.city;
     return num + " " + street + " " + city;
 }
-// parallel.from(addresses, { maxValuesPerTask: 2 });
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.from(addresses)
-    .map(formatAddresses)
-    .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log(result); });
-// Output:
+// parallel.from(addresses)
+//   .map(formatAddresses)
+//   .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
+//   .then(result => console.log(result))
+// Result:
 // The result of the task 2 is [ '100 10th Ave. Boulder' ]
 // The result of the task 0 is [ '123 Main St. Boulder' ]
 // The result of the task 1 is [ '555 Elm St. Boulder' ]
 // [ '123 Main St. Boulder',
 //   '555 Elm St. Boulder',
 //   '100 10th Ave. Boulder' ]
+var environment = { maxDegreeOfParallelism: 2 };
+__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.from(addresses, environment)
+    .map(formatAddresses)
+    .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
+    .then(function (result) { return console.log(result); });
 
 
 /***/ })

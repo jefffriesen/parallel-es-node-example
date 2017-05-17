@@ -19,17 +19,21 @@ function formatAddresses(address: IAddress): string {
   return `${num} ${street} ${city}`
 }
 
-// parallel.from(addresses, { maxValuesPerTask: 2 });
-parallel.from(addresses)
-  .map(formatAddresses)
-  .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
-  .then(result => console.log(result))
-
-
-// Output:
+// parallel.from(addresses)
+//   .map(formatAddresses)
+//   .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
+//   .then(result => console.log(result))
+// Result:
 // The result of the task 2 is [ '100 10th Ave. Boulder' ]
 // The result of the task 0 is [ '123 Main St. Boulder' ]
 // The result of the task 1 is [ '555 Elm St. Boulder' ]
 // [ '123 Main St. Boulder',
 //   '555 Elm St. Boulder',
 //   '100 10th Ave. Boulder' ]
+
+
+const environment = {maxDegreeOfParallelism: 2}
+parallel.from(addresses, environment)
+  .map(formatAddresses)
+  .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
+  .then(result => console.log(result))

@@ -72,6 +72,8 @@
 /***/ (function(module, exports) {
 
 var environment = { taskIndex: 2, valuesPerTask: 2 };
+// Can't get this working
+// https://github.com/MichaReiser/parallel.es/blob/a00b50ae92cbfc1e4406c1cc72c113252d989afc/test/common/parallel/slave/times-iterator.specs.ts
 // const generatorFunc = (n: number) => n
 // parallel
 //   .times(10, generatorFunc)

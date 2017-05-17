@@ -17,9 +17,6 @@ Compile files in watch mode
 yarn compile
 ```
 
-## Compiled files
-I'm intentionally checking in the `dist/` directory so people can see the output. If you fork this you can uncomment `dist/` in the `.gitignore` file.
-
 ### References for setting this up
 http://stackoverflow.com/questions/29911491/using-webpack-on-server-side-of-nodejs
 https://github.com/MichaReiser/parallel-es-webpack-plugin

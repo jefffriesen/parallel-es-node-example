@@ -1,4 +1,5 @@
 import parallel from 'parallel-es'
+import * as _ from 'lodash'
 
 // Example showing `from` which allows you to pass any array to the function to be
 // processed  in parallel.
@@ -14,26 +15,46 @@ interface IAddress {
   readonly city: string;
 }
 
-function formatAddresses(address: IAddress): string {
-  const {num, street, city} = address
-  return `${num} ${street} ${city}`
-}
-
+// == basic from example =======================================================
+// function formatAddresses(address: IAddress): string {
+//   const {num, street, city} = address
+//   return `${num} ${street} ${city}`
+// }
+//
 // parallel.from(addresses)
 //   .map(formatAddresses)
 //   .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
 //   .then(result => console.log(result))
-// Result:
+
+
+const zip = '80305'
+
+function formatAddresses(address: IAddress, {zip}): string {
+  const {num, street, city} = address
+  return `${num} ${street} ${city} ${zip}`
+}
+
+parallel.from(addresses)
+  .inEnvironment({zip})
+  .map(formatAddresses)
+  .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
+  .then(result => console.log(result))
+
+
+// == environment options ======================================================
+// const environment = {maxDegreeOfParallelism: 2}
+// parallel.from(addresses, environment)
+//   .map(formatAddresses)
+//   .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
+//   .then(result => console.log(result))
+
+
+
+// == results ==================================================================
+// // Result:
 // The result of the task 2 is [ '100 10th Ave. Boulder' ]
 // The result of the task 0 is [ '123 Main St. Boulder' ]
 // The result of the task 1 is [ '555 Elm St. Boulder' ]
 // [ '123 Main St. Boulder',
 //   '555 Elm St. Boulder',
 //   '100 10th Ave. Boulder' ]
-
-
-const environment = {maxDegreeOfParallelism: 2}
-parallel.from(addresses, environment)
-  .map(formatAddresses)
-  .subscribe((subresult, taskIndex) => console.log(`The result of the task ${taskIndex} is`, subresult))
-  .then(result => console.log(result))

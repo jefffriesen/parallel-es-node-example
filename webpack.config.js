@@ -10,6 +10,7 @@ module.exports = {
     'parallel-from': './src/parallel-from.ts',
     'parallel-from-environment': './src/parallel-from-environment.ts',
     'parallel-times': './src/parallel-times.ts',
+    'parallel-run': './src/parallel-run.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

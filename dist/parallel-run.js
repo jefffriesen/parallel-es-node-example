@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,35 +86,45 @@ module.exports = require("os");
 //# sourceMappingURL=node.parallel.js.map
 
 /***/ }),
-/* 3 */,
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = cube;
+function cube(value) {
+    return value * value * value;
+}
+
+
+/***/ }),
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */,
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_parallel_es__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_cube__ = __webpack_require__(3);
 
-/* Error
-* https://github.com/MichaReiser/parallel.es/blob/a00b50ae92cbfc1e4406c1cc72c113252d989afc/test/common/parallel/slave/times-iterator.specs.ts
-*
-* Error:
-* (node:32723) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): [object Object]
-* (node:32723) DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
-*
-* The online solution to this problem is setting `"target": "es6"` but then I
-* can't use lamda functions in `.map` instead of explicit `function() {}`.
-*/
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.times(5, 2)
-    .map(function (value) { return value * value; })
-    .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
+
+// Example showing `parallel.run` which sends the computation to a background
+// thread. This may be useful to free up the UI while a CPU-intensive task is
+// running
+// To Run: node dist/parallel-run.js
+//  Not working:
+// (node:33089) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): [object Object]
+// (node:33089) DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a
+    .run(function () {
+    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */]);
+})
     .then(function (result) { return console.log(result); });
+// expected result: [ 0, 1, 8, 27, 64, 125, 216, 343, 512, 729 ]
 
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=parallel-times.js.map
+//# sourceMappingURL=parallel-run.js.map

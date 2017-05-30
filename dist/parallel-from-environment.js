@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,55 +86,55 @@ module.exports = require("os");
 //# sourceMappingURL=node.parallel.js.map
 
 /***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = cube;
-function cube(value) {
-    return value * value * value;
-}
-
-
-/***/ }),
-/* 4 */,
-/* 5 */,
-/* 6 */
+/* 3 */,
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_parallel_es__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_cube__ = __webpack_require__(3);
 
-
-// Comment out all but the function you want to test
-// Simple lamda function assigned to map. Note that this needs to be
-// compiled to es5 non-arrow functions. See this comment as to why:
-// https://github.com/MichaReiser/parallel.es/issues/105#issuecomment-301850333
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(function (value) { return value * value; })
+// Example showing `from` which allows you to pass any array to the function to
+// be processed  in parallel. This includes passing in functions into the worker
+// environment.
+// To Run: `node dist/parallel-from-environmnet.js`
+var environment = {
+    zip: '80305'
+};
+var addresses = [
+    { num: '123', street: 'Main St.', city: 'Boulder' },
+    { num: '555', street: 'Elm St.', city: 'Boulder' },
+    { num: '100', street: '10th Ave.', city: 'Boulder' },
+];
+function formatAddresses(address, environment) {
+    var zip = environment.zip;
+    var num = address.num, street = address.street, city = address.city;
+    return num + " " + street + " " + city + " " + zip;
+}
+// Second argument to `.from` is an optional object that allows customizations
+// over thread usage. Options are:
+// maxDegreeOfParallelism,
+// maxValuesPerTask
+// minValuesPerTask
+// threadPool
+// scheduler
+// functionCallSerializer
+__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.from(addresses, { maxDegreeOfParallelism: 2 })
+    .inEnvironment(environment)
+    .map(formatAddresses)
     .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
     .then(function (result) { return console.log(result); });
-// result: [ 0, 1, 4, 9, 16, 25, 36, 49, 64, 81 ]
-// Showing an imported function passed to map function
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
-    .subscribe(function (subresult, taskIndex) { return console.log("Example 1 task resut: " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log(result); });
-// result: [ 0, 1, 8, 27, 64, 125, 216, 343, 512, 729 ]
-// Additional chaining options: filter, reduce and catch.
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
-    .filter(function (value) { return value % 2 === 0; })
-    .reduce(0, function (acc, val) { return acc + val; })
-    .subscribe(function (subresult, taskIndex) { return console.log("Example 2 task result: " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log(result); })
-    .catch(function (err) { throw new Error("We have problems: " + err); });
-// result: 800
+// == results ==================================================================
+// // Result:
+// The result of the task 2 is [ '100 10th Ave. Boulder' ]
+// The result of the task 0 is [ '123 Main St. Boulder' ]
+// The result of the task 1 is [ '555 Elm St. Boulder' ]
+// [ '123 Main St. Boulder 80305',
+//   '555 Elm St. Boulder 80305',
+//   '100 10th Ave. Boulder 80305' ]
 
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=parallel-range.js.map
+//# sourceMappingURL=parallel-from-environment.js.map

@@ -109,27 +109,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_cube__ = __webpack_require__(3);
 
 
-// Comment out all but the function you want to test
+// Example showing `.range` which allows you to operate on a range of values
+// using map, filter and reduce function chaining
+// To Run: node dist/parallel-range.js
+// Showing an imported function passed to map function
+__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
+    .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
+    .subscribe(function (subresult, taskIndex) { return console.log("cube subtask resut: " + taskIndex + " is", subresult); })
+    .then(function (result) { return console.log('cube result: ', result); });
+// result: [ 0, 1, 8, 27, 64, 125, 216, 343, 512, 729 ]
 // Simple lamda function assigned to map. Note that this needs to be
 // compiled to es5 non-arrow functions. See this comment as to why:
 // https://github.com/MichaReiser/parallel.es/issues/105#issuecomment-301850333
 __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(function (value) { return value * value; })
-    .subscribe(function (subresult, taskIndex) { return console.log("The result of the task " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log(result); });
+    .map(function (value) { return value * value * value; })
+    .subscribe(function (subresult, taskIndex) { return console.log("lambda cube subtask result " + taskIndex + " is", subresult); })
+    .then(function (result) { return console.log('lamda cube result: ', result); });
 // result: [ 0, 1, 4, 9, 16, 25, 36, 49, 64, 81 ]
-// Showing an imported function passed to map function
-__WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
-    .subscribe(function (subresult, taskIndex) { return console.log("Example 1 task resut: " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log(result); });
-// result: [ 0, 1, 8, 27, 64, 125, 216, 343, 512, 729 ]
 // Additional chaining options: filter, reduce and catch.
 __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
     .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
     .filter(function (value) { return value % 2 === 0; })
     .reduce(0, function (acc, val) { return acc + val; })
-    .subscribe(function (subresult, taskIndex) { return console.log("Example 2 task result: " + taskIndex + " is", subresult); })
+    .subscribe(function (subresult, taskIndex) { return console.log("cube filter & reduce result: " + taskIndex + " is", subresult); })
     .then(function (result) { return console.log(result); })
     .catch(function (err) { throw new Error("We have problems: " + err); });
 // result: 800

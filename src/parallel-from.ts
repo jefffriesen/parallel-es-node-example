@@ -3,7 +3,8 @@ import * as _ from 'lodash'
 
 // Example showing `from` which allows you to pass any array to the function to
 // be processed  in parallel.
-// To Run: `node dist/parallel-from.js`
+// To Run: node dist/parallel-from.js
+
 const addresses = [
   {num: '123', street: 'Main St.', city: 'Boulder', zip: '80305'},
   {num: '555', street: 'Elm St.', city: 'Boulder', zip: '80305'},

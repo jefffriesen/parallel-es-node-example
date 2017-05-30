@@ -98,7 +98,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // Example showing `from` which allows you to pass any array to the function to
 // be processed  in parallel. This includes passing in functions into the worker
 // environment.
-// To Run: `node dist/parallel-from-environmnet.js`
+// To Run: node dist/parallel-from-environmnet.js
 var environment = {
     zip: '80305'
 };

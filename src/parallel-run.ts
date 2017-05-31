@@ -1,5 +1,5 @@
 import parallel from 'parallel-es'
-import {cube} from './utils/cube'
+import {square} from './utils/square'
 
 // Example showing `parallel.run` which sends the computation to a background
 // thread. This may be useful to free up the UI while a CPU-intensive task is
@@ -12,7 +12,7 @@ import {cube} from './utils/cube'
 
 parallel
   .run(function() {
-	   return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(cube)
+	   return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(square)
    })
   .then(result => console.log(result))
 

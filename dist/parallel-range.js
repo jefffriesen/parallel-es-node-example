@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,27 +86,16 @@ module.exports = require("os");
 //# sourceMappingURL=node.parallel.js.map
 
 /***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = cube;
-function cube(value) {
-    return value * value * value;
-}
-
-
-/***/ }),
+/* 3 */,
 /* 4 */,
-/* 5 */,
-/* 6 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_parallel_es__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_cube__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_square__ = __webpack_require__(8);
 
 
 // Example showing `.range` which allows you to operate on a range of values
@@ -114,27 +103,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // To Run: node dist/parallel-range.js
 // Showing an imported function passed to map function
 __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
-    .subscribe(function (subresult, taskIndex) { return console.log("cube subtask resut: " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log('cube result: ', result); });
+    .map(__WEBPACK_IMPORTED_MODULE_1__utils_square__["a" /* square */])
+    .subscribe(function (subresult, taskIndex) { return console.log("square subtask resut: " + taskIndex + " is", subresult); })
+    .then(function (result) { return console.log('square result: ', result); });
 // result: [ 0, 1, 8, 27, 64, 125, 216, 343, 512, 729 ]
 // Simple lamda function assigned to map. Note that this needs to be
 // compiled to es5 non-arrow functions. See this comment as to why:
 // https://github.com/MichaReiser/parallel.es/issues/105#issuecomment-301850333
 __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
     .map(function (value) { return value * value * value; })
-    .subscribe(function (subresult, taskIndex) { return console.log("lambda cube subtask result " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log('lamda cube result: ', result); });
+    .subscribe(function (subresult, taskIndex) { return console.log("lambda square subtask result " + taskIndex + " is", subresult); })
+    .then(function (result) { return console.log('lamda square result: ', result); });
 // result: [ 0, 1, 4, 9, 16, 25, 36, 49, 64, 81 ]
 // Additional chaining options: filter, reduce and catch.
 __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
-    .map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */])
+    .map(__WEBPACK_IMPORTED_MODULE_1__utils_square__["a" /* square */])
     .filter(function (value) { return value % 2 === 0; })
     .reduce(0, function (acc, val) { return acc + val; })
-    .subscribe(function (subresult, taskIndex) { return console.log("cube filter & reduce result: " + taskIndex + " is", subresult); })
+    .subscribe(function (subresult, taskIndex) { return console.log("square filter & reduce result: " + taskIndex + " is", subresult); })
     .then(function (result) { return console.log(result); })
     .catch(function (err) { throw new Error("We have problems: " + err); });
 // result: 800
+
+
+/***/ }),
+/* 6 */,
+/* 7 */,
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = square;
+function square(value) {
+    return value * value;
+}
 
 
 /***/ })

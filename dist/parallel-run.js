@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -86,28 +86,17 @@ module.exports = require("os");
 //# sourceMappingURL=node.parallel.js.map
 
 /***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = cube;
-function cube(value) {
-    return value * value * value;
-}
-
-
-/***/ }),
+/* 3 */,
 /* 4 */,
 /* 5 */,
-/* 6 */,
-/* 7 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_parallel_es___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_parallel_es__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_cube__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_square__ = __webpack_require__(8);
 
 
 // Example showing `parallel.run` which sends the computation to a background
@@ -119,10 +108,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // (node:33089) DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
 __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a
     .run(function () {
-    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(__WEBPACK_IMPORTED_MODULE_1__utils_cube__["a" /* cube */]);
+    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(__WEBPACK_IMPORTED_MODULE_1__utils_square__["a" /* square */]);
 })
     .then(function (result) { return console.log(result); });
 // expected result: [ 0, 1, 8, 27, 64, 125, 216, 343, 512, 729 ]
+
+
+/***/ }),
+/* 7 */,
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = square;
+function square(value) {
+    return value * value;
+}
 
 
 /***/ })

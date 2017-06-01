@@ -31,6 +31,6 @@ parallel.range(0, 10)
   .filter(value => value % 2 === 0)
   .reduce(0, (acc, val) => acc + val)
   .subscribe((subresult, taskIndex) => console.log(`square filter & reduce result: ${taskIndex} is`, subresult))
-  .then(result => console.log(result))
+  .then(result => console.log('filter and reduce result', result))
   .catch(err => {throw new Error(`We have problems: ${err}`)})
-// result: 800
+// result: 120

@@ -121,9 +121,9 @@ __WEBPACK_IMPORTED_MODULE_0_parallel_es___default.a.range(0, 10)
     .filter(function (value) { return value % 2 === 0; })
     .reduce(0, function (acc, val) { return acc + val; })
     .subscribe(function (subresult, taskIndex) { return console.log("square filter & reduce result: " + taskIndex + " is", subresult); })
-    .then(function (result) { return console.log(result); })
+    .then(function (result) { return console.log('filter and reduce result', result); })
     .catch(function (err) { throw new Error("We have problems: " + err); });
-// result: 800
+// result: 120
 
 
 /***/ }),
